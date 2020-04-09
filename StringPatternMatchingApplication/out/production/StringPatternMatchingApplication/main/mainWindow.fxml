@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+   <children>
+      <BorderPane fx:id="mainWindow" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <bottom>
+            <AnchorPane prefHeight="32.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="statusLabelMain" layoutX="55.0" layoutY="8.0" />
+               </children></AnchorPane>
+         </bottom>
+         <center>
+            <SplitPane dividerPositions="0.5" prefHeight="428.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+               <items>
+                  <AnchorPane minHeight="300.0" minWidth="300.0" prefHeight="498.0" prefWidth="396.0">
+                     <children>
+                        <HBox layoutX="8.0" layoutY="14.0" prefHeight="0.0" prefWidth="395.0" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="14.0">
+                           <children>
+                              <Label fx:id="textLabel" layoutX="10.0" prefHeight="58.0" prefWidth="246.0" text="Válassza ki a vizsgálni kívánt szövegfájlt, vagy írjon be valamit" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button layoutX="256.0" layoutY="15.0" mnemonicParsing="false" onAction="#openTextFileButtonAction" text="Fájl kiválasztása">
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <TextArea fx:id="userTextArea" layoutY="95.0" prefHeight="407.0" prefWidth="395.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane minHeight="300.0" minWidth="300.0" prefHeight="160.0" prefWidth="100.0">
+                     <children>
+                        <HBox layoutX="13.0" layoutY="14.0" prefHeight="0.0" prefWidth="395.0" AnchorPane.bottomAnchor="438.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="-8.0" AnchorPane.topAnchor="14.0">
+                           <children>
+                              <Label fx:id="textLabel1" layoutX="10.0" minWidth="200.0" prefHeight="58.0" prefWidth="300.0" text="Válassza ki a keresendő mintát tartalmazó szövegfájlt, vagy írjon be valamit" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <VBox prefHeight="72.0" prefWidth="179.0">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#openPatternFileButtonAction" text="Fájl kiválasztása">
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button mnemonicParsing="false" onAction="#onSearchButtonAction" prefHeight="31.0" prefWidth="124.0" text="Keresés!" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="15.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <TextArea fx:id="patternTextArea" layoutY="95.0" prefHeight="407.0" prefWidth="395.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+                     </children>
+                  </AnchorPane>
+               </items>
+            </SplitPane>
+         </center>
+         <top>
+            <MenuBar minHeight="32.0" minWidth="800.0" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" text="Fájl">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clearContent" text="Új" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Súgó">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onHelpAction" text="A program használata" />
+                     </items></Menu>
+               </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+      <BorderPane fx:id="resultPane" prefHeight="568.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Fájl">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#onBackButtonAction" text="Vissza" />
+                        <MenuItem mnemonicParsing="false" onAction="#onExitButtonAction" text="Kilépés" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" onAction="#onHelpAction" text="Súgó" />
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <ScrollPane prefHeight="504.0" prefWidth="593.0" BorderPane.alignment="CENTER">
+               <content>
+                  <TextFlow fx:id="resultTextFlow" prefHeight="407.0" prefWidth="767.0" />
+               </content>
+               <BorderPane.margin>
+                  <Insets left="2.0" />
+               </BorderPane.margin>
+            </ScrollPane>
+         </center>
+         <right>
+            <AnchorPane prefHeight="504.0" prefWidth="188.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#onBackButtonAction" text="Vissza">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#onExitButtonAction" text="Kilépés">
+                           <HBox.margin>
+                              <Insets bottom="10.0" left="30.0" right="10.0" top="10.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </right>
+         <bottom>
+            <AnchorPane prefHeight="32.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="statusLabelResult" layoutX="58.0" layoutY="4.0" />
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+      <AnchorPane fx:id="helpPane" prefHeight="568.0" prefWidth="800.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="okayButton" layoutX="247.0" layoutY="499.0" mnemonicParsing="false" onAction="#onOkayButtonAction" prefHeight="31.0" prefWidth="307.0" text="Rendben" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
+            <Label layoutX="16.0" layoutY="76.0" text="A program használata: A bal oldali szövegszerkesztőbe írjon be egy tetszőleges szöveget, vagy válasszon ki egy szöveges állományt a számítógépéről, amiben egy bizonyos szöveg mintát szeretne keresni. A jobb oldali szövegszerkesztőbe írjon be egy tetszőleges szöveget,vagy válasszon ki egy szöveges állományt a számítógépéről,ami tartalmazza a mintát, amit keresni szeretne a bal oldalon megadott szövegben. Ha úgy írta be a mintát, akkor kattintson a keresés gombra. Ha a szöveges fájlt úgy tallózza be, akkor a tallózás befejeztével egyből elindul a keresés. A keresés befejeztével megjelenik az eredmény, az eredeti szöveg, benne pirossal kiemelve a keresett minta.Az állapotsávban látható, hogy hány karakternyi találat van." textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+               <font>
+                  <Font name="Arial Black" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
